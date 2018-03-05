@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
 
 <!-- SignUp Form-->
-  <form v-on:submit="signUp">
+  <form v-on:submit.prevent="signUp">
     <input type="text" v-model="email" placeholder="Email">
     <input type="text" v-model="firstName" placeholder='First Name'>
     <input type="text" v-model="lastName" placeholder="Last Name">
@@ -28,18 +28,24 @@ export default {
       firstName: '',
       lastName: '',
       password: '',
-      password2: '',
-      name: this.firstName + this.lastName
+      password2: ''
+    }
+  },
+
+  computed: {
+    // eslint-disable-next-line
+    name: function() {
+      return this.firstName + ' ' + this.lastName
     }
   },
 
   methods: {
     // eslint-disable-next-line
-    signUp() {
+    signUp: function(event) {
       this.$apollo.mutate({
         mutation: gql`
           mutation($email: String!, $password: String!, $name: String!) {
-            signup(email: $email, password: $password, name: $name)
+            signup(email: $email, password: $password, name: $name){}
           }
         `,
         variables: {

@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 
 // Provide your own uri for a GraphQL endpoint here
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4466/api/dev'
+  uri: 'http://localhost:4000/'
 })
 
 const apolloClient = new ApolloClient({
