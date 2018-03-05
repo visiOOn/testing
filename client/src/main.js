@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+/* eslint-disable */
 import Vue from 'vue'
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
@@ -12,7 +13,7 @@ Vue.config.productionTip = false
 
 // Provide your own uri for a GraphQL endpoint here
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000'
+  uri: 'http://localhost:4466/api/dev'
 })
 
 const apolloClient = new ApolloClient({
@@ -30,7 +31,7 @@ const apolloProvider = new VueApollo({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  apolloProvider,
+  provide: apolloProvider.provide(),
   router,
   template: '<App/>',
   components: { App }
